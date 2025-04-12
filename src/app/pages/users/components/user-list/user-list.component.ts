@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {UserService} from '../../services/users.service';
 import {User} from '../../models/User';
 import {NgForOf, NgIf} from '@angular/common';
@@ -13,7 +13,7 @@ import {RouterLink} from '@angular/router';
   ],
   templateUrl: './user-list.component.html'
 })
-export class UserListComponent {
+export class UserListComponent implements OnInit {
 
   users: User[] = [];
   private userService = inject(UserService);

@@ -7,6 +7,7 @@ import {
   NgbNavLinkButton,
   NgbNavOutlet
 } from '@ng-bootstrap/ng-bootstrap';
+import {NgOptimizedImage} from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
@@ -16,18 +17,16 @@ import {
     NgbDropdown,
     NgbDropdownMenu,
     NgbDropdownItem,
+    NgOptimizedImage,
     NgbDropdownToggle
   ],
   template: `
     <ul ngbNav #nav="ngbNav" class="nav-tabs justify-content-end">
       <li ngbDropdown class="nav-item" role="presentation">
-        <button type="button" class="nav-link" ngbDropdownToggle>Dropdown</button>
+        <img ngSrc="user-logo.png" width="50" height="50" alt="profile image" role="button" class="m-2" ngbDropdownToggle/>
         <div ngbDropdownMenu>
-          <button ngbDropdownItem>Action</button>
-          <button ngbDropdownItem>Another action</button>
-          <button ngbDropdownItem>Something else here</button>
-          <div class="dropdown-divider"></div>
-          <button ngbDropdownItem>Separated link</button>
+          <button ngbDropdownItem>Profilo</button>
+          <button ngbDropdownItem>Logout</button>
         </div>
       </li>
     </ul>

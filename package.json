@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --live-reload false",
+    "start": "ng serve",
     "build": "ng build",
-    "local-server": "json-server --watch db.json --port 3000",
+    "local-server": "json-server --watch db.json --port 5000",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
