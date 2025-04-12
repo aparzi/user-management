@@ -1,24 +1,50 @@
 <div class="container mt-4">
-  <h2 class="text-white">Elenco Utenti</h2>
-  <a routerLink="/users/new" class="btn btn-primary mb-3">Aggiungi Utente</a>
-  <table class="table table-striped" *ngIf="users.length > 0">
+  <div class="d-flex justify-content-between">
+    <h2 class="text-white">Elenco Utenti</h2>
+    <a routerLink="/users/new" class="btn btn-primary mb-3">
+      <i class="bi bi-person-plus me-2"></i>Aggiungi Utente
+    </a>
+  </div>
+  <table class="table table-striped" *ngIf="usersPaginated.length > 0">
     <thead>
     <tr>
       <th>Nome</th>
+      <th>Cognome</th>
       <th>Email</th>
+      <th>Età</th>
+      <th>Ruolo</th>
       <th>Azioni</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let user of users">
+    <tr *ngFor="let user of usersPaginated">
       <td>{{ user.name }}</td>
+      <td>{{ user.surname }}</td>
       <td>{{ user.email }}</td>
+      <td>{{ user.age }}</td>
+      <td>{{ user.role }}</td>
       <td>
-        <a [routerLink]="['/users', user.id]" class="btn btn-sm btn-info">Dettagli</a>
-        <a [routerLink]="['/users/edit', user.id]" class="btn btn-sm btn-warning">Modifica</a>
-        <button (click)="deleteUser(user.id!)" class="btn btn-sm btn-danger">Elimina</button>
+        <a [routerLink]="['/users', user.id]" class="btn btn-sm btn-info me-2"><i class="bi bi-person-square"></i></a>
+        <a [routerLink]="['/users/edit', user.id]" class="btn btn-sm btn-warning me-2"><i class="bi bi-pencil-square"></i></a>
+        <a (click)="deleteUser(user.id!)" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></a>
       </td>
     </tr>
     </tbody>
   </table>
+
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+      [collectionSize]="collectionSize"
+      [(page)]="page"
+      [pageSize]="pageSize"
+      (pageChange)="refreshUsers()"
+    >
+    </ngb-pagination>
+
+    <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshUsers()">
+      <option [ngValue]="10">10 elementi per pagina</option>
+      <option [ngValue]="15">15 elementi per pagina</option>
+      <option [ngValue]="50">50 elementi per pagina</option>
+    </select>
+  </div>
 </div>
