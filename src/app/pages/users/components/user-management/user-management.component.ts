@@ -1,7 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ActivatedRoute, RouterLink} from '@angular/router';
-import {User} from '../../models/User';
 import {UserService} from '../../services/users.service';
 import {tap} from 'rxjs';
 
@@ -95,8 +94,12 @@ export class UserManagementComponent implements OnInit {
               age: user.age,
               role: user.role
             });
+            if (this.isInfo) {
+              const controls = (this.form as FormGroup).controls;
+              Object.keys(controls).forEach((key: any) => controls[key].disable());
+            }
           })
-      ).subscribe()
+      ).subscribe();
     }
   }
 
