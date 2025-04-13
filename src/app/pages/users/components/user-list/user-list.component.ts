@@ -1,19 +1,18 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {UserService} from '../../services/users.service';
 import {User} from '../../models/User';
-import {NgForOf, NgIf} from '@angular/common';
+
 import {RouterLink} from '@angular/router';
-import {NgbPagination} from '@ng-bootstrap/ng-bootstrap';
+import {NgbPagination, NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-user-list',
   imports: [
-    NgForOf,
     RouterLink,
-    NgIf,
     NgbPagination,
-    FormsModule
+    FormsModule,
+    NgbTooltip
   ],
   templateUrl: './user-list.component.html'
 })
