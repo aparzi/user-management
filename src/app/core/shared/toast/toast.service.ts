@@ -1,19 +1,22 @@
 import {Injectable, signal} from '@angular/core';
 
+export interface IToast {
+  type: 'success' | 'warning' | 'error';
+  title?: string;
+  message?: string;
+  subtitle?: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class ToastService {
 
-  private statusToast = signal(false);
+  private toast = signal<IToast | undefined>(undefined);
 
-  show() {
-    this.statusToast.set(true);
+  show(config: IToast) {
+    this.toast.update(_ => config);
   }
 
-  hide() {
-    this.statusToast.set(false);
-  }
-
-  getStatusToast = this.statusToast.asReadonly();
+  getStatusToast = this.toast.asReadonly();
 }

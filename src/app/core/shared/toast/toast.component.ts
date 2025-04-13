@@ -1,24 +1,24 @@
 import {AfterViewInit, Component, effect, input} from '@angular/core';
 import {Toast} from 'bootstrap';
-import {ToastService} from './toast.service';
+import {IToast, ToastService} from './toast.service';
 
 @Component({
   selector: 'app-toast',
   template: `
     <div class="toast-container position-fixed top-0 end-0 p-3">
-      <div id="custom_toast" class="toast text-white bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+      <div id="custom_toast" class="toast text-white bg-{{currentConfig?.type}}" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
           <i class="bi bi-check-circle mr-2"
-             [class.bi-success]="type() === 'success'"
-             [class.bi-exclamation-circle-fill]="type() === 'warning'"
-             [class.bi-x-octagon]="type() === 'error'">
+             [class.bi-success]="currentConfig?.type === 'success'"
+             [class.bi-exclamation-circle-fill]="currentConfig?.type === 'warning'"
+             [class.bi-x-octagon]="currentConfig?.type === 'error'">
           </i>
-          <strong class="ms-2 me-auto">{{ title() }}</strong>
-          <small>{{ subtitle() }}</small>
+          <strong class="ms-2 me-auto">{{ currentConfig?.title }}</strong>
+          <small>{{ currentConfig?.subtitle }}</small>
           <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
         <div class="toast-body">
-          {{ message() }}
+          {{ currentConfig?.message }}
         </div>
       </div>
     </div>
@@ -26,20 +26,15 @@ import {ToastService} from './toast.service';
 })
 export class ToastComponent implements AfterViewInit {
 
-  type = input.required<'success' | 'warning' | 'error'>();
-  title = input<string>();
-  message = input<string>();
-  subtitle = input<string>();
-  autohide = input<boolean>(true);
+  public currentConfig: IToast | undefined;
 
   private toastInstance!: Toast;
 
   constructor(private toastService: ToastService) {
     effect(() => {
-      console.log('ciao', this.toastService.getStatusToast());
-      if (this.toastService.getStatusToast()) {
+      this.currentConfig = this.toastService.getStatusToast();
+      if (this.currentConfig) {
         this.toastInstance.show();
-        queueMicrotask(() => this.toastService.hide());
       }
     });
   }
@@ -47,7 +42,7 @@ export class ToastComponent implements AfterViewInit {
   ngAfterViewInit() {
     const el = document.getElementById('custom_toast');
     if (el) {
-      this.toastInstance = new Toast(el, {autohide: this.autohide(), delay: 4000});
+      this.toastInstance = new Toast(el, {autohide: true, delay: 3000});
     }
   }
 }

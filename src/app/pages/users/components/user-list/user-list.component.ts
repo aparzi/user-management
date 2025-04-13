@@ -8,7 +8,6 @@ import {FormsModule} from '@angular/forms';
 import {UserDeleteModalComponent} from '../user-delete-modal/user-delete-modal.component';
 import {tap} from 'rxjs';
 import {ToastService} from '../../../../core/shared/toast/toast.service';
-import {ToastComponent} from '../../../../core/shared/toast/toast.component';
 
 @Component({
   selector: 'app-user-list',
@@ -16,8 +15,7 @@ import {ToastComponent} from '../../../../core/shared/toast/toast.component';
     RouterLink,
     NgbPagination,
     FormsModule,
-    NgbTooltip,
-    ToastComponent
+    NgbTooltip
   ],
   templateUrl: './user-list.component.html'
 })
@@ -27,7 +25,6 @@ export class UserListComponent implements OnInit {
   public page = 1;
   public pageSize = 10;
   public collectionSize = 0;
-  public configToast = {title: 'success', message: 'Operazione completata'};
 
   private users: User[] = [];
   private userService = inject(UserService);
@@ -35,6 +32,10 @@ export class UserListComponent implements OnInit {
   private toastService = inject(ToastService);
 
   ngOnInit() {
+    this.getAllUsers();
+  }
+
+  getAllUsers() {
     this.userService.getAll().subscribe(data => {
       this.users = data;
       this.collectionSize = this.users?.length;
@@ -46,7 +47,14 @@ export class UserListComponent implements OnInit {
     const componentRef = this.modalService.open(UserDeleteModalComponent);
     componentRef.componentInstance.user = signal(user);
     componentRef.closed.pipe(
-      tap(_ => this.toastService.show())
+      tap(res => {
+        if (res?.result) {
+          this.toastService.show({type: 'success', title: 'Successo', message: 'Operazione completata!'});
+          this.getAllUsers();
+        } else {
+          this.toastService.show({type: 'error', title: 'Errore', message: 'Si è verificato un problema!'});
+        }
+      })
     ).subscribe();
   }
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {map, Observable} from 'rxjs';
 import {User} from '../models/User';
 
 @Injectable({ providedIn: 'root' })
@@ -15,7 +15,9 @@ export class UserService {
   }
 
   getById(id: number): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/${id}`);
+    return this.http.get<User[]>(`${this.apiUrl}?id=${id}`).pipe(
+      map((res: User[]) => res[0])
+    );
   }
 
   add(user: User): Observable<User> {

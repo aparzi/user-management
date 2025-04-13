@@ -26,7 +26,7 @@
       "surname": "Brown",
       "email": "jenniferlee@hotmail.com",
       "age": 43,
-      "role": "editor",
+      "role": "moderatore",
       "address": {
         "address": "5008 Sarah Well Suite 138",
         "city": "Petersonchester",
@@ -46,7 +46,7 @@
       "surname": "Rivera",
       "email": "cordovadavid@abbott.com",
       "age": 21,
-      "role": "moderator",
+      "role": "moderatore",
       "address": {
         "address": "86545 Koch Stream",
         "city": "Lake Joshua",
@@ -86,7 +86,7 @@
       "surname": "Ford",
       "email": "jonesdawn@hotmail.com",
       "age": 44,
-      "role": "viewer",
+      "role": "utente",
       "address": {
         "address": "518 Rojas Turnpike Suite 541",
         "city": "Port Lisa",
@@ -106,7 +106,7 @@
       "surname": "Gibson",
       "email": "michaellewis@hotmail.com",
       "age": 24,
-      "role": "viewer",
+      "role": "utente",
       "address": {
         "address": "98228 Dominguez Wall Apt. 137",
         "city": "Rachelview",
@@ -126,7 +126,7 @@
       "surname": "Payne",
       "email": "millerjames@mckay-montes.com",
       "age": 27,
-      "role": "editor",
+      "role": "admin",
       "address": {
         "address": "627 Cook Street",
         "city": "New Michelle",
@@ -146,7 +146,7 @@
       "surname": "Booth",
       "email": "xherman@gmail.com",
       "age": 25,
-      "role": "editor",
+      "role": "utente",
       "address": {
         "address": "230 Rose Road Suite 199",
         "city": "Port Matthewstad",
@@ -166,7 +166,7 @@
       "surname": "Myers",
       "email": "smithsarah@yahoo.com",
       "age": 45,
-      "role": "viewer",
+      "role": "utente",
       "address": {
         "address": "923 Lisa Ford Suite 223",
         "city": "Jaredside",
@@ -186,7 +186,7 @@
       "surname": "Richardson",
       "email": "arnoldamy@hotmail.com",
       "age": 32,
-      "role": "viewer",
+      "role": "utente",
       "address": {
         "address": "155 Thornton Neck Suite 297",
         "city": "Thomasport",
@@ -226,7 +226,7 @@
       "surname": "Friedman",
       "email": "alexandersmith@perkins.biz",
       "age": 46,
-      "role": "user",
+      "role": "utente",
       "address": {
         "address": "199 Cynthia Cape Apt. 420",
         "city": "Robertsview",
@@ -246,7 +246,7 @@
       "surname": "Duke",
       "email": "kelleyelizabeth@flores-morgan.com",
       "age": 25,
-      "role": "viewer",
+      "role": "utente",
       "address": {
         "address": "3108 Martin Port",
         "city": "Colemanfort",
@@ -266,7 +266,7 @@
       "surname": "Murphy",
       "email": "gavinmccoy@gmail.com",
       "age": 53,
-      "role": "user",
+      "role": "utente",
       "address": {
         "address": "6053 Gina Estates Apt. 744",
         "city": "Shaneton",
@@ -306,7 +306,7 @@
       "surname": "Patton",
       "email": "carlosjohnson@rice.net",
       "age": 49,
-      "role": "user",
+      "role": "utente",
       "address": {
         "address": "673 Adams Hill Apt. 880",
         "city": "Danielside",
@@ -326,7 +326,7 @@
       "surname": "Jimenez",
       "email": "isandoval@palmer.com",
       "age": 37,
-      "role": "user",
+      "role": "utente",
       "address": {
         "address": "9282 Stacy Wells Suite 598",
         "city": "East Jenna",
@@ -386,7 +386,7 @@
       "surname": "Oconnor",
       "email": "hinesalexis@cline.net",
       "age": 64,
-      "role": "viewer",
+      "role": "utente",
       "address": {
         "address": "32816 Savage Trail",
         "city": "Mannchester",
@@ -426,7 +426,7 @@
       "surname": "Lopez",
       "email": "gskinner@yahoo.com",
       "age": 18,
-      "role": "moderator",
+      "role": "moderatore",
       "address": {
         "address": "57878 Alexander Summit",
         "city": "Rodriguezville",
@@ -446,7 +446,7 @@
       "surname": "Day",
       "email": "michelle67@yahoo.com",
       "age": 65,
-      "role": "viewer",
+      "role": "utente",
       "address": {
         "address": "02189 Boyd Highway",
         "city": "North Joseph",
@@ -466,7 +466,7 @@
       "surname": "Neal",
       "email": "timothy98@casey.com",
       "age": 61,
-      "role": "user",
+      "role": "utente",
       "address": {
         "address": "47631 Johnathan Forges Apt. 419",
         "city": "Lake Tyler",
@@ -486,7 +486,7 @@
       "surname": "Adkins",
       "email": "johnsonbrian@schmidt.com",
       "age": 60,
-      "role": "editor",
+      "role": "admin",
       "address": {
         "address": "39325 Michael Isle",
         "city": "New Aaronhaven",
@@ -506,7 +506,7 @@
       "surname": "Mills",
       "email": "heatheryoung@gmail.com",
       "age": 48,
-      "role": "user",
+      "role": "utente",
       "address": {
         "address": "36260 Morris Ridge Suite 372",
         "city": "West Davidshire",
@@ -526,7 +526,7 @@
       "surname": "Herrera",
       "email": "phernandez@tucker-stein.org",
       "age": 36,
-      "role": "editor",
+      "role": "moderatore",
       "address": {
         "address": "839 Owens Pike",
         "city": "Port Eric",
@@ -546,7 +546,7 @@
       "surname": "Mcintyre",
       "email": "christophercarney@brown.biz",
       "age": 18,
-      "role": "moderator",
+      "role": "moderatore",
       "address": {
         "address": "8356 Donald Freeway",
         "city": "New Elainetown",
@@ -566,7 +566,7 @@
       "surname": "Oconnor",
       "email": "joneskatherine@daniels-lopez.info",
       "age": 31,
-      "role": "moderator",
+      "role": "moderatore",
       "address": {
         "address": "39684 Matthew Hills",
         "city": "Wrightmouth",
@@ -586,7 +586,7 @@
       "surname": "Larsen",
       "email": "daviddecker@gmail.com",
       "age": 34,
-      "role": "moderator",
+      "role": "utente",
       "address": {
         "address": "71974 Susan Bridge",
         "city": "South Michael",
