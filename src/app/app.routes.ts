@@ -1,10 +1,18 @@
-import { Routes } from '@angular/router';
-import {UserListComponent} from './pages/users/components/user-list/user-list.component';
-import {UserManagementComponent} from './pages/users/components/user-management/user-management.component';
+import {Routes} from '@angular/router';
+import {authGuard} from './core/guards/auth.guard';
 
 export const routes: Routes = [
-  { path: '', component: UserListComponent },
-  { path: 'users', component: UserListComponent },
-  { path: 'user/:mode', component: UserManagementComponent }, // creazione
-  { path: 'user/:mode/:id', component: UserManagementComponent }, // modifica
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/auth/component/login/login.component').then(c => c.LoginComponent)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./pages/pages.routes').then(r => r.routes),
+    canActivate: [authGuard]
+  },
+  {
+    path: '**',
+    redirectTo: ''
+  }
 ];

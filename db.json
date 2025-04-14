@@ -576,5 +576,25 @@
         "country": "Germany"
       }
     }
+  ],
+  "operators": [
+    {
+      "id": "201",
+      "username": "admin1",
+      "password": "admin@1",
+      "role": "admin"
+    },
+    {
+      "id": "307",
+      "username": "moderator2",
+      "password": "moderator@2",
+      "role": "moderator"
+    },
+    {
+      "id": "403",
+      "username": "user3",
+      "password": "user@3",
+      "role": "user"
+    }
   ]
 }
