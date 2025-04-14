@@ -1,7 +1,7 @@
 import {Injectable, signal} from '@angular/core';
 
 export interface IToast {
-  type: 'success' | 'warning' | 'error';
+  type: 'success' | 'warning' | 'danger' | 'info';
   title?: string;
   message?: string;
   subtitle?: string;

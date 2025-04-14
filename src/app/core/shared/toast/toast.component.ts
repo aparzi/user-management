@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, effect, input} from '@angular/core';
+import {AfterViewInit, Component, effect} from '@angular/core';
 import {Toast} from 'bootstrap';
 import {IToast, ToastService} from './toast.service';
 
@@ -10,8 +10,8 @@ import {IToast, ToastService} from './toast.service';
         <div class="toast-header">
           <i class="bi bi-check-circle mr-2"
              [class.bi-success]="currentConfig?.type === 'success'"
-             [class.bi-exclamation-circle-fill]="currentConfig?.type === 'warning'"
-             [class.bi-x-octagon]="currentConfig?.type === 'error'">
+             [class.bi-exclamation-circle-fill]="currentConfig?.type === 'warning' || currentConfig?.type === 'info'"
+             [class.bi-x-octagon]="currentConfig?.type === 'danger'">
           </i>
           <strong class="ms-2 me-auto">{{ currentConfig?.title }}</strong>
           <small>{{ currentConfig?.subtitle }}</small>

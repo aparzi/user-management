@@ -1,8 +1,10 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ActivatedRoute, RouterLink} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {UserService} from '../../services/users.service';
-import {tap} from 'rxjs';
+import {catchError, EMPTY, tap} from 'rxjs';
+import {ToastService} from '../../../../core/shared/toast/toast.service';
+import {User} from '../../models/User';
 
 @Component({
   selector: 'app-user-management',
@@ -56,9 +58,9 @@ import {tap} from 'rxjs';
         <hr/>
 
         <div class="d-flex justify-content-between">
-          <button class="btn btn-outline-warning" type="button" routerLink="/list">Annulla</button>
+          <button class="btn btn-outline-warning" type="button" routerLink="/users">Annulla</button>
           @if (!isInfo) {
-            <button class="btn btn-success" type="submit">Salva</button>
+            <button [disabled]="form.invalid" class="btn btn-success" type="submit">Salva</button>
           }
         </div>
       </form>
@@ -67,6 +69,10 @@ import {tap} from 'rxjs';
 })
 export class UserManagementComponent implements OnInit {
 
+  public isEdit = false;
+  public isInfo = false;
+
+  private toastService = inject(ToastService);
   private fb = inject(FormBuilder);
   public form = this.fb.group({
     name: ['', Validators.required],
@@ -75,17 +81,16 @@ export class UserManagementComponent implements OnInit {
     age: [18, [Validators.required, Validators.min(18)]],
     role: ['', Validators.required],
   });
-  public isEdit = false;
-  public isInfo = false;
-
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+  private router: Router = inject(Router);
   private userService: UserService = inject(UserService);
+  private userId: number | undefined;
 
   ngOnInit(): void {
     this.setMode();
     if (this.isEdit || this.isInfo) {
-      const userId = this.activatedRoute.snapshot.params['id'];
-      this.userService.getById(userId).pipe(
+      this.userId = this.activatedRoute.snapshot.params['id'];
+      this.userService.getById(this.userId!).pipe(
           tap(user => {
             this.form.setValue({
               name: user.name,
@@ -106,17 +111,13 @@ export class UserManagementComponent implements OnInit {
   public saveData(): void {
     if (this.form.invalid) return;
 
-    // const user: User = this.form.value;
-    //
-    // if (this.isEdit && this.userId) {
-    //   this.userService.update({...user, id: this.userId}).subscribe(() => {
-    //     this.router.navigate(['/users']);
-    //   });
-    // } else {
-    //   this.userService.add(user).subscribe(() => {
-    //     this.router.navigate(['/users']);
-    //   });
-    // }
+    const user = {...this.form.value, id: this.userId} as User;
+
+    if (this.isEdit) {
+      this.updateUser(user);
+    } else {
+      this.createUser(user);
+    }
   }
 
   public getTitleForm(): string {
@@ -132,5 +133,33 @@ export class UserManagementComponent implements OnInit {
   private setMode() {
     const mode = this.activatedRoute.snapshot.params['mode'];
     mode === 'edit' ? this.isEdit = true : mode === 'info' ? this.isInfo = true : '';
+  }
+
+  private updateUser(user: User): void {
+    this.userService.update(user).pipe(
+      tap(_ => {
+        this.toastService.show({type: 'success', title: 'Successo', message: 'Utente modificato correttamente!'});
+        this.router.navigate(['/users']);
+      }),
+      catchError(error => {
+        console.log('Error user update => ', error);
+        this.toastService.show({type: 'danger', title: 'Errore', message: 'Si è verificato un problema!'});
+        return EMPTY;
+      })
+    ).subscribe();
+  }
+
+  private createUser(user: Omit<User, 'id'>) {
+    this.userService.add(user).pipe(
+      tap(_ => {
+        this.toastService.show({type: 'success', title: 'Successo', message: 'Utente salvato correttamente!'});
+        this.router.navigate(['/users']);
+      }),
+      catchError(error => {
+        console.log('Error user create => ', error);
+        this.toastService.show({type: 'danger', title: 'Errore', message: 'Si è verificato un problema!'});
+        return EMPTY;
+      })
+    ).subscribe();
   }
 }

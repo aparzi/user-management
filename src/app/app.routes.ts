@@ -4,7 +4,7 @@ import {UserManagementComponent} from './pages/users/components/user-management/
 
 export const routes: Routes = [
   { path: '', component: UserListComponent },
-  { path: 'list', component: UserListComponent },
+  { path: 'users', component: UserListComponent },
   { path: 'user/:mode', component: UserManagementComponent }, // creazione
   { path: 'user/:mode/:id', component: UserManagementComponent }, // modifica
 ];

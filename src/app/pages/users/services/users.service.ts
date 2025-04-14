@@ -20,7 +20,7 @@ export class UserService {
     );
   }
 
-  add(user: User): Observable<User> {
+  add(user: Omit<User, 'id'>): Observable<User> {
     return this.http.post<User>(this.apiUrl, user);
   }
 

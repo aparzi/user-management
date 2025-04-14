@@ -52,7 +52,7 @@ export class UserListComponent implements OnInit {
           this.toastService.show({type: 'success', title: 'Successo', message: 'Operazione completata!'});
           this.getAllUsers();
         } else {
-          this.toastService.show({type: 'error', title: 'Errore', message: 'Si è verificato un problema!'});
+          this.toastService.show({type: 'danger', title: 'Errore', message: 'Si è verificato un problema!'});
         }
       })
     ).subscribe();
