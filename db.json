@@ -580,19 +580,25 @@
   "operators": [
     {
       "id": "201",
-      "username": "admin1",
+      "name": "Mario",
+      "surname": "Rossi",
+      "email": "admin@test.it",
       "password": "admin@1",
       "role": "admin"
     },
     {
       "id": "307",
-      "username": "moderator2",
+      "name": "Maria",
+      "surname": "Bianchi",
+      "email": "moderator@test.it",
       "password": "moderator@2",
       "role": "moderator"
     },
     {
       "id": "403",
-      "username": "user3",
+      "name": "Vincenzo",
+      "surname": "Torci",
+      "email": "user@test.it",
       "password": "user@3",
       "role": "user"
     }

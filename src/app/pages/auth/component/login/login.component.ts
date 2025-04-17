@@ -15,22 +15,20 @@ import {Router} from '@angular/router';
     <div class="container mt-5" style="max-width: 400px;">
       <h2 class="mb-4 text-center">Login</h2>
       <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <!-- Username -->
         <div class="mb-3">
-          <label for="username" class="form-label">Username</label>
+          <label for="email" class="form-label">Email</label>
           <input
-            type="text"
-            id="username"
+            type="email"
+            id="email"
             class="form-control"
-            formControlName="username"
-            [class.is-invalid]="submitted && loginForm.get('username')?.invalid"
+            formControlName="email"
+            [class.is-invalid]="submitted && loginForm.get('email')?.invalid"
           />
           <div class="invalid-feedback">
-            Username obbligatorio.
+            Email obbligatoria.
           </div>
         </div>
 
-        <!-- Password -->
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
           <input
@@ -57,7 +55,7 @@ export class LoginComponent {
 
   private fb = inject(FormBuilder);
   public loginForm = this.fb.group({
-    username: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required]
   });
 
@@ -72,7 +70,7 @@ export class LoginComponent {
 
     const credentials = this.loginForm.value;
 
-    this.authService.login(credentials.username!, credentials.password!).pipe(
+    this.authService.login(credentials.email!, credentials.password!).pipe(
       tap((user) => {
         if (user) {
           this.toastService.show({type: 'success', title: 'Successo', message: 'Login effettuato!'});

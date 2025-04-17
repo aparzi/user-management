@@ -12,6 +12,7 @@ export class AuthService {
 
   private _currentUser = signal<User | null>(null);
   readonly isAuthenticated = computed(() => this._currentUser() !== null);
+  readonly currentUser = this._currentUser.asReadonly();
 
   constructor(private http: HttpClient) {
   }
@@ -23,6 +24,7 @@ export class AuthService {
         map(users => {
           if (users.length) {
             this._currentUser.set(users[0]);
+            localStorage.setItem('user', JSON.stringify(this._currentUser()));
             return users[0];
           } else {
             return null;
@@ -31,8 +33,17 @@ export class AuthService {
       );
   }
 
+  getUserLogged(): void {
+    if (localStorage.getItem('user')) {
+        this._currentUser.set(JSON.parse(localStorage.getItem('user')!));
+    } else {
+      this.logout();
+    }
+  }
+
   logout() {
     this._currentUser.set(null);
+    localStorage.clear();
   }
 
 }
