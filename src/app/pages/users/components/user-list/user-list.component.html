@@ -26,13 +26,16 @@
             <td>{{ user.age }}</td>
             <td>{{ user.role }}</td>
             <td>
-              <a [routerLink]="['/user/info/', user.id]" class="btn btn-sm btn-info me-2" ngbTooltip="Visualizza dettagli">
+              <a [appTableBody]="user" (actionClicked)="actionClicked($event)"
+                 id="info-action" class="btn btn-sm btn-info me-2" ngbTooltip="Visualizza dettagli">
                 <i class="bi bi-person-square"></i>
               </a>
-              <a [routerLink]="['/user/edit/', user.id]" class="btn btn-sm btn-warning me-2" ngbTooltip="Modifica utente">
+              <a [appTableBody]="user" (actionClicked)="actionClicked($event)"
+                 id="edit-action" class="btn btn-sm btn-warning me-2" ngbTooltip="Modifica utente">
                 <i class="bi bi-pencil-square"></i>
               </a>
-              <a (click)="deleteUser(user!)" class="btn btn-sm btn-danger" ngbTooltip="Elimina utente">
+              <a [appTableBody]="user" (deleteUserClicked)="deleteUser($event)"
+                 id="delete-action" class="btn btn-sm btn-danger" ngbTooltip="Elimina utente">
                 <i class="bi bi-trash"></i>
               </a>
             </td>

@@ -1,13 +1,13 @@
 import {Component, inject, OnInit, signal} from '@angular/core';
 import {UserService} from '../../services/users.service';
 import {User} from '../../models/User';
-
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {NgbModal, NgbPagination, NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule} from '@angular/forms';
 import {UserDeleteModalComponent} from '../user-delete-modal/user-delete-modal.component';
 import {tap} from 'rxjs';
 import {ToastService} from '../../../../core/shared/toast/toast.service';
+import {TableBodyDirective} from './table-body/table-body.component';
 
 @Component({
   selector: 'app-user-list',
@@ -15,6 +15,7 @@ import {ToastService} from '../../../../core/shared/toast/toast.service';
     RouterLink,
     NgbPagination,
     FormsModule,
+    TableBodyDirective,
     NgbTooltip
   ],
   templateUrl: './user-list.component.html'
@@ -30,6 +31,7 @@ export class UserListComponent implements OnInit {
   private userService = inject(UserService);
   private modalService = inject(NgbModal);
   private toastService = inject(ToastService);
+  private router = inject(Router);
 
   ngOnInit() {
     this.getAllUsers();
@@ -65,4 +67,7 @@ export class UserListComponent implements OnInit {
     );
   }
 
+  actionClicked(path: string): void {
+    this.router.navigate([path]);
+  }
 }

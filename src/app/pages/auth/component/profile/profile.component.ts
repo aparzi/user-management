@@ -1,9 +1,12 @@
 import {Component, inject} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
+  imports: [
+    RouterLink
+  ],
   template: `
     <div class="container mt-5" style="max-width: 600px;">
       <div class="card shadow-sm">
@@ -25,8 +28,9 @@ import {Router} from '@angular/router';
             </li>
           </ul>
 
-          <div class="text-center">
-            <button class="btn btn-outline-danger" (click)="logout()">Logout</button>
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-outline-secondary" type="button" routerLink="/users">Lista utenti</button>
+            <button class="btn btn-danger" (click)="logout()">Logout</button>
           </div>
         </div>
       </div>
